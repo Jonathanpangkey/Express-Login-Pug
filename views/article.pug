@@ -1,0 +1,13 @@
+extend layout 
+
+block content 
+    h1= article.title 
+    h5 Written by  #{author}
+    p= article.body
+    hr
+    //-uthenticated 
+    if user
+        //- check if we are the user that create the article
+        if user.id == article.author
+            a.btn.btn-default.btn-primary(href='/articles/edit/'+article._id) Edit 
+            a.btn.btn-danger.delete-article(href="#", data-id=article._id) Delete

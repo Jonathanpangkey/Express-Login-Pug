@@ -1,0 +1,14 @@
+.alert-error{
+    color: #a94442;
+    background-color: #f2dede;
+    border: #abccd1;
+}
+.alert-success{
+    color: #3c763d;
+    background-color: #dff0d8;
+    border: #d6e9c6;
+}
+
+.navbar{
+    width: 100vw;
+}
