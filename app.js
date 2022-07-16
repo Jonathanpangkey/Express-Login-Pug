@@ -85,7 +85,7 @@ app.get("*", function (req, res, next) {
 });
 
 // create route
-app.get("/", function (req, res) {
+app.get("/", ensureAuthenticated, function (req, res) {
 	res.render("index", {
 		title: "Articles",
 	});
@@ -94,6 +94,16 @@ app.get("/", function (req, res) {
 // bring the route file
 let users = require("./routes/users");
 app.use("/users", users);
+
+function ensureAuthenticated(req,res,next){
+    if(req.isAuthenticated()){
+        return next();
+    }
+    else{
+        req.flash('danger','Please login')
+        res.redirect('/users/login')
+    }
+}
 
 // run the server
 app.listen(process.env.PORT || 2000, () => console.log("app is running "));
